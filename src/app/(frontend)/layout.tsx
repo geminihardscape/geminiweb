@@ -10,10 +10,12 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '900'],
   variable: '--font-red-hat-display',
 })
 
@@ -32,8 +34,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             preview: isEnabled,
           }}
         />
+        <Header />
 
         {children}
+        <Footer />
       </body>
     </html>
   )
