@@ -8,7 +8,9 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
+import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
+import { Home } from './globals/Home/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -60,8 +62,9 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL,
     },
   }),
-  collections: [Posts, Projects, Media, Categories, Users],
+  collections: [Posts, Projects, Testimonials, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
+  globals: [Home],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,
