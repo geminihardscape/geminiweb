@@ -98,13 +98,13 @@
   --secondary-foreground: #ffffff;
   --tertiary: #805730;
   --tertiary-foreground: #ffffff;
-  --muted: oklch(97% 0 0deg);
+  --muted: #99a1af;
   --muted-foreground: oklch(55.6% 0 0deg);
   --accent: #b8963e;
   --accent-foreground: #0a0a0a;
   --destructive: oklch(57.7% 0.245 27.325deg);
   --destructive-foreground: oklch(57.7% 0.245 27.325deg);
-  --border: oklch(92.2% 0 0deg);
+  --border: #1e2939;
   --input: oklch(92.2% 0 0deg);
   --ring: oklch(70.8% 0 0deg);
   --chart-1: oklch(64.6% 0.222 41.116deg);

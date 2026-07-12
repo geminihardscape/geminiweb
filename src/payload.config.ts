@@ -8,6 +8,7 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
+import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
 import { Home } from './globals/Home/config'
@@ -62,7 +63,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL,
     },
   }),
-  collections: [Posts, Projects, Testimonials, Media, Categories, Users],
+  collections: [Posts, Projects, Services, Testimonials, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Home],
   plugins,

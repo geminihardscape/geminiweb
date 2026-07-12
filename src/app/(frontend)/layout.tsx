@@ -12,6 +12,7 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { SiteChrome } from '@/components/SiteChrome'
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
@@ -29,12 +30,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
-        <AdminBar
-          adminBarProps={{
-            preview: isEnabled,
-          }}
-        />
-        <Header />
+        <SiteChrome>
+          <AdminBar
+            adminBarProps={{
+              preview: isEnabled,
+            }}
+          />
+          <Header />
+        </SiteChrome>
 
         {children}
         <Footer />

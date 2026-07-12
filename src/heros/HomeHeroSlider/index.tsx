@@ -31,7 +31,7 @@ const HomeHeroSlider = ({ slides }: HomeHeroSliderProps) => {
   if (!imageUrl) return null
 
   return (
-    <div className="relative flex flex-1 flex-col">
+    <div className="relative flex flex-col">
       <Hero image={imageUrl}>
         <h1 className="font-medium text-8xl uppercase">{activeSlide.title}</h1>
         {activeSlide.subtitle && <h2 className="text-3xl font-normal">{activeSlide.subtitle}</h2>}
