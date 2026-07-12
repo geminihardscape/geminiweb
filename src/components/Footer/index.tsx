@@ -4,7 +4,7 @@ import Logo from '@/components/Nav/Logo'
 const Footer = () => {
   const currentYear = new Date().getFullYear()
   return (
-    <div className="bg-primary text-white flex flex-col items-center justify-center py-4">
+    <div className="bg-primary text-white flex flex-col items-center justify-center py-4 border-t ">
       <div className="container flex items-center justify-between px-8">
         <Logo />
         <Nav />

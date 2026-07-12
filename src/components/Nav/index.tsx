@@ -7,15 +7,15 @@ const links: NavLinkType[] = [
   },
   {
     label: 'About Us',
-    href: '/',
+    href: '/about-us',
   },
   {
     label: 'Projects',
-    href: '/',
+    href: '/projects',
   },
   {
     label: 'Contact',
-    href: '/',
+    href: '/contact',
   },
 ]
 
