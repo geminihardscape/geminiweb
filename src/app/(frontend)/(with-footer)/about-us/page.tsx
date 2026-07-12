@@ -1,5 +1,6 @@
 import Button from '@/components/Button'
 import Hero from '@/heros/Hero'
+import { Metadata } from 'next'
 import Image from 'next/image'
 
 export default async function AboutUsPage() {
@@ -44,4 +45,8 @@ export default async function AboutUsPage() {
       </div>
     </main>
   )
+}
+
+export const metadata: Metadata = {
+  title: 'Gemini - About Us',
 }

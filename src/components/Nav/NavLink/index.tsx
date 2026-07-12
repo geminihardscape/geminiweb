@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export type NavLinkType = {
   label: string
   href: string
@@ -5,7 +7,7 @@ export type NavLinkType = {
 const NavLink = ({ label, href }: NavLinkType) => {
   return (
     <li>
-      <a href={href}>{label}</a>
+      <Link href={href}>{label}</Link>
     </li>
   )
 }

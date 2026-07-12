@@ -52,5 +52,28 @@ export const plugins: Plugin[] = [
         })
       },
     },
+    formSubmissionOverrides: {
+      admin: {
+        defaultColumns: ['form', 'createdAt'],
+      },
+      // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
+      fields: ({ defaultFields }) => {
+        return defaultFields.map((field) => {
+          if ('name' in field && field.name === 'submissionData') {
+            return {
+              ...field,
+              admin: {
+                ...field.admin,
+                components: {
+                  ...field.admin?.components,
+                  Field: '@/components/admin/SubmissionDataTable',
+                },
+              },
+            }
+          }
+          return field
+        })
+      },
+    },
   }),
 ]

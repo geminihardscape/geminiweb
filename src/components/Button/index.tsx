@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 type ButtonVariant = 'primary' | 'secondary'
 
 type ButtonType = {
@@ -12,9 +14,9 @@ const Button = ({ label, variant = 'primary', href }: ButtonType) => {
     secondary: 'border border-tertiary text-tertiary py-4 px-8 pointer',
   }
   return (
-    <a className={cls[variant]} href={href}>
+    <Link className={cls[variant]} href={href}>
       {label}
-    </a>
+    </Link>
   )
 }
 

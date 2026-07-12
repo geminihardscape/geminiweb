@@ -15,18 +15,13 @@ export const Number: React.FC<
 > = ({ name, defaultValue, errors, label, register, required, width }) => {
   return (
     <Width width={width}>
-      <Label htmlFor={name}>
+      <Label className="sr-only" htmlFor={name}>
         {label}
-
-        {required && (
-          <span className="required">
-            * <span className="sr-only">(required)</span>
-          </span>
-        )}
       </Label>
       <Input
         defaultValue={defaultValue}
         id={name}
+        placeholder={`${label}${required ? ' *' : ''}`}
         type="number"
         {...register(name, { required })}
       />
