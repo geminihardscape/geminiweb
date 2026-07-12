@@ -6,7 +6,7 @@ type HeroProps = {
 const Hero = ({ image, children }: HeroProps) => {
   return (
     <div
-      className="bg-cover bg-center min-h-[calc(100vh-var(--chrome-height,0px))] shrink-0 flex flex-col"
+      className="bg-cover bg-center h-screen max-h-[746px] shrink-0 flex flex-col"
       style={{
         backgroundImage: `linear-gradient(to bottom, #000000 0%, #66666682 50%), url(${image})`,
       }}
