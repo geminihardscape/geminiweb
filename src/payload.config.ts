@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
-import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
 import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
@@ -63,7 +62,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL,
     },
   }),
-  collections: [Posts, Projects, Services, Testimonials, Media, Categories, Users],
+  collections: [Projects, Services, Testimonials, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Home],
   plugins,

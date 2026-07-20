@@ -25,12 +25,12 @@ type NodeTypes =
   | SerializedBlockNode<MediaBlockProps | BannerBlockProps | CodeBlockProps>
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
-  const { value, relationTo } = linkNode.fields.doc!
+  const { value } = linkNode.fields.doc!
   if (typeof value !== 'object') {
     throw new Error('Expected value to be an object')
   }
   const slug = value.slug
-  return relationTo === 'projects' ? `/proyectos/${slug}` : `/posts/${slug}`
+  return `/projects/${slug}`
 }
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
