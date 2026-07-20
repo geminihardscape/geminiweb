@@ -1,19 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Banner } from '../../blocks/Banner/config'
-import { Code } from '../../blocks/Code/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
 
@@ -37,7 +25,6 @@ export const Projects: CollectionConfig = {
   defaultPopulate: {
     title: true,
     slug: true,
-    client: true,
     categories: true,
     meta: {
       image: true,
@@ -45,7 +32,7 @@ export const Projects: CollectionConfig = {
     },
   },
   admin: {
-    defaultColumns: ['title', 'client', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
@@ -69,120 +56,72 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      type: 'tabs',
-      tabs: [
+      name: 'heroImage',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      admin: {
+        initCollapsed: true,
+      },
+      fields: [
         {
-          fields: [
-            {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
-            {
-              name: 'gallery',
-              type: 'array',
-              admin: {
-                initCollapsed: true,
-              },
-              fields: [
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
-                  required: true,
-                },
-              ],
-              label: 'Galería',
-            },
-            {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: false,
-              required: true,
-            },
-          ],
-          label: 'Content',
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
         },
-        {
-          fields: [
-            {
-              name: 'client',
-              type: 'text',
-              admin: {
-                position: 'sidebar',
-              },
-              label: 'Cliente',
-            },
-            {
-              name: 'projectUrl',
-              type: 'text',
-              admin: {
-                position: 'sidebar',
-              },
-              label: 'URL del proyecto',
-            },
-            {
-              name: 'technologies',
-              type: 'array',
-              admin: {
-                position: 'sidebar',
-              },
-              fields: [
-                {
-                  name: 'name',
-                  type: 'text',
-                  required: true,
-                },
-              ],
-              label: 'Tecnologías',
-            },
-            {
-              name: 'categories',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              hasMany: true,
-              relationTo: 'categories',
-            },
-          ],
-          label: 'Meta',
-        },
-        {
-          name: 'meta',
-          label: 'SEO',
-          fields: [
-            OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
-            }),
-            MetaTitleField({
-              hasGenerateFn: true,
-            }),
-            MetaImageField({
-              relationTo: 'media',
-            }),
-            MetaDescriptionField({}),
-            PreviewField({
-              hasGenerateFn: true,
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-            }),
-          ],
-        },
+      ],
+      label: 'Galería',
+    },
+    {
+      name: 'location',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'year',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        step: 1,
+      },
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      admin: {
+        position: 'sidebar',
+      },
+      hasMany: true,
+      relationTo: 'categories',
+    },
+    {
+      name: 'meta',
+      type: 'group',
+      label: 'SEO',
+      fields: [
+        OverviewField({
+          titlePath: 'meta.title',
+          descriptionPath: 'meta.description',
+          imagePath: 'meta.image',
+        }),
+        MetaTitleField({
+          hasGenerateFn: true,
+        }),
+        MetaImageField({
+          relationTo: 'media',
+        }),
+        MetaDescriptionField({}),
+        PreviewField({
+          hasGenerateFn: true,
+          titlePath: 'meta.title',
+          descriptionPath: 'meta.description',
+        }),
       ],
     },
     {
