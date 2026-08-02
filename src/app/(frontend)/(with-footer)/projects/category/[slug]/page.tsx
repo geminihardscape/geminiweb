@@ -3,13 +3,16 @@ import type { Metadata } from 'next'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import type { Media } from '@/payload-types'
+import EmptyState from '@/components/EmptyState'
+import Hero from '@/heros/Hero'
+import ProjectCard from '../../_components/ProjectCard'
+import Pagination from '../../_components/Pagination'
+import { PROJECTS_PER_PAGE } from '../../_components/constants'
 
 type Args = {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ page?: string }>
 }
 
 const queryCategoryBySlug = async (slug: string) => {
@@ -24,8 +27,11 @@ const queryCategoryBySlug = async (slug: string) => {
   return categories.docs[0] ?? null
 }
 
-export default async function ProjectsByCategoryPage({ params }: Args) {
+export default async function ProjectsByCategoryPage({ params, searchParams }: Args) {
   const { slug } = await params
+  const { page } = await searchParams
+  const currentPage = Math.max(1, Number(page) || 1)
+
   const category = await queryCategoryBySlug(slug)
 
   if (!category) notFound()
@@ -38,36 +44,42 @@ export default async function ProjectsByCategoryPage({ params }: Args) {
         in: [category.id],
       },
     },
+    page: currentPage,
+    limit: PROJECTS_PER_PAGE,
   })
 
   return (
-    <main className="bg-primary container py-24 text-white">
-      <h1 className="text-4xl font-medium uppercase">{category.title}</h1>
+    <main className="bg-primary text-white">
+      <Hero image="/heroprojects.webp">
+        <h1 className="text-8xl uppercase">{category.title}</h1>
+      </Hero>
 
-      <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.docs.map((project) => {
-          const heroImage = project.heroImage as Media
-          const imageUrl = typeof heroImage === 'object' ? (heroImage.url ?? undefined) : undefined
+      <div className="container py-24">
+        {projects.docs.length > 0 ? (
+          <>
+            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {projects.docs.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
 
-          return (
-            <Link
-              key={project.id}
-              className="group relative flex aspect-square flex-col justify-end overflow-hidden p-6"
-              href={`/projects/${project.slug}`}
-            >
-              {imageUrl && (
-                <Image
-                  alt={project.title}
-                  className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  src={imageUrl}
-                />
-              )}
-              <p className="relative text-lg font-medium uppercase">{project.title}</p>
-            </Link>
-          )
-        })}
+            <Pagination
+              basePath={`/projects/category/${slug}`}
+              page={projects.page ?? 1}
+              totalPages={projects.totalPages}
+              hasPrevPage={projects.hasPrevPage}
+              hasNextPage={projects.hasNextPage}
+              prevPage={projects.prevPage}
+              nextPage={projects.nextPage}
+            />
+          </>
+        ) : (
+          <EmptyState
+            message="No projects in this category yet."
+            ctaLabel="All Projects"
+            ctaHref="/projects"
+          />
+        )}
       </div>
     </main>
   )

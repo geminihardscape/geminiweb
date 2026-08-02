@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 type PaginationProps = {
+  basePath?: string
   page: number
   totalPages: number
   hasPrevPage: boolean
@@ -10,6 +11,7 @@ type PaginationProps = {
 }
 
 const Pagination = ({
+  basePath = '/projects',
   page,
   totalPages,
   hasPrevPage,
@@ -24,7 +26,7 @@ const Pagination = ({
       {hasPrevPage && (
         <Link
           className="border-tertiary text-tertiary border px-6 py-2 uppercase"
-          href={`/projects?page=${prevPage}`}
+          href={`${basePath}?page=${prevPage}`}
         >
           Previous
         </Link>
@@ -37,7 +39,7 @@ const Pagination = ({
       {hasNextPage && (
         <Link
           className="border-tertiary text-tertiary border px-6 py-2 uppercase"
-          href={`/projects?page=${nextPage}`}
+          href={`${basePath}?page=${nextPage}`}
         >
           Next
         </Link>

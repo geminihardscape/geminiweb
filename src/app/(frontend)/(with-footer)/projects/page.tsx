@@ -8,8 +8,7 @@ import ProjectCard from './_components/ProjectCard'
 import Pagination from './_components/Pagination'
 import Title from '@/components/Title'
 import Subtitle from '@/components/Subtitle'
-
-const PROJECTS_PER_PAGE = 9
+import { PROJECTS_PER_PAGE } from './_components/constants'
 
 type Args = {
   searchParams: Promise<{ page?: string }>
