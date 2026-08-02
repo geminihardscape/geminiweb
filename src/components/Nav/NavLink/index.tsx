@@ -10,7 +10,7 @@ export type NavLinkType = {
 }
 const NavLink = ({ label, href }: NavLinkType) => {
   const pathname = usePathname()
-  const isActive = pathname === href
+  const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
     <li>
