@@ -10,11 +10,12 @@ export default async function ContactPage() {
     <main className="bg-secondary flex flex-col">
       <div className="relative h-screen max-h-[550px] shrink-0 flex flex-col">
         <Image
-          src="/herocontact.webp"
           alt=""
+          className="object-cover object-center"
           fill
           priority
-          className="object-cover object-center"
+          sizes="100vw"
+          src="/herocontact.webp"
         />
 
         <div className="container relative flex flex-1 flex-col items-end justify-center text-white">

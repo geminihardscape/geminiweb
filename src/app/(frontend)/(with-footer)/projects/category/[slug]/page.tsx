@@ -60,6 +60,7 @@ export default async function ProjectsByCategoryPage({ params }: Args) {
                   alt={project.title}
                   className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   src={imageUrl}
                 />
               )}

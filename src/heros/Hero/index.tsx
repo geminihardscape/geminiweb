@@ -8,7 +8,14 @@ type HeroProps = {
 const Hero = ({ image, children }: HeroProps) => {
   return (
     <div className="relative h-screen max-h-[746px] shrink-0 flex flex-col">
-      <Image src={image} alt="" fill priority className="object-cover object-center" />
+      <Image
+        alt=""
+        className="object-cover object-center"
+        fill
+        priority
+        sizes="100vw"
+        src={image}
+      />
 
       <div
         className="absolute inset-0"
