@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 import type { Media, Project } from '@/payload-types'
 
@@ -14,7 +14,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="border-tertiary/40 group flex flex-col border">
       <div className="p-4">
-        <div className="relative aspect-video overflow-hidden bg-secondary">
+        <div
+          className="relative aspect-video overflow-hidden bg-secondary"
+          style={{ viewTransitionName: `project-hero-${project.slug}` }}
+        >
           {imageUrl && (
             <Image
               alt={project.title}

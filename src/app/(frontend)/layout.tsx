@@ -7,6 +7,7 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { ViewTransitions } from 'next-view-transitions'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -22,22 +23,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(redHatDisplay.variable)} lang="en">
-      <head>
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-      </head>
-      <body>
-        <AdminBar
-          adminBarProps={{
-            preview: isEnabled,
-          }}
-        />
-        <Header />
+    <ViewTransitions>
+      <html className={cn(redHatDisplay.variable)} lang="en">
+        <head>
+          <link href="/favicon.ico" rel="icon" sizes="32x32" />
+          <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        </head>
+        <body>
+          <AdminBar
+            adminBarProps={{
+              preview: isEnabled,
+            }}
+          />
+          <Header />
 
-        {children}
-      </body>
-    </html>
+          {children}
+        </body>
+      </html>
+    </ViewTransitions>
   )
 }
 
