@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { revalidateHomepage, revalidateHomepageOnDelete } from './hooks/revalidateHomepage'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -32,4 +33,8 @@ export const Services: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [revalidateHomepage],
+    afterDelete: [revalidateHomepageOnDelete],
+  },
 }

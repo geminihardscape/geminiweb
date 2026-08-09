@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { revalidateHomepage, revalidateHomepageOnDelete } from './hooks/revalidateHomepage'
 
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
@@ -30,4 +31,8 @@ export const Testimonials: CollectionConfig = {
       type: 'text',
     },
   ],
+  hooks: {
+    afterChange: [revalidateHomepage],
+    afterDelete: [revalidateHomepageOnDelete],
+  },
 }
