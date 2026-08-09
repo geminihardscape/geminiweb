@@ -3,14 +3,17 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'An open-source website built with Payload and Next.js.',
+  description:
+    'Custom patios, retaining walls, and outdoor living spaces built by Gemini Hardscape — serving Oakland, Macomb, and Wayne. Free estimates on new installs and repairs.',
   images: [
     {
-      url: `${getServerSideURL()}/website-template-OG.webp`,
+      url: `${getServerSideURL()}/heroprojects.webp`,
+      width: 1388,
+      height: 778,
     },
   ],
-  siteName: 'Payload Website Template',
-  title: 'Payload Website Template',
+  siteName: 'Gemini Hardscape',
+  title: 'Gemini Hardscape',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

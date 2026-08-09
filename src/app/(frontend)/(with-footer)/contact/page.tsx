@@ -4,13 +4,14 @@ import Image from 'next/image'
 import { getPayload } from 'payload'
 import { FormBlock } from '@/blocks/Form/Component'
 import Contact from '@/components/Contact'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 export default async function ContactPage() {
   return (
     <main className="bg-secondary flex flex-col">
       <div className="relative h-screen max-h-[550px] shrink-0 flex flex-col">
         <Image
-          alt=""
+          alt="Gemini Hardscape outdoor living space"
           className="object-cover object-center"
           fill
           priority
@@ -28,6 +29,15 @@ export default async function ContactPage() {
   )
 }
 
+const description =
+  'Get a free estimate from Gemini Hardscape. Serving Oakland, Macomb, and Wayne with expert patio, retaining wall, and outdoor living installations.'
+
 export const metadata: Metadata = {
-  title: 'Gemini - Contact',
+  title: 'Contact & Free Estimate',
+  description,
+  openGraph: mergeOpenGraph({
+    title: 'Contact Gemini Hardscape',
+    description,
+    url: '/contact',
+  }),
 }

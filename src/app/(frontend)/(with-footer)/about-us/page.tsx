@@ -3,6 +3,8 @@ import Hero from '@/heros/Hero'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+
 export default async function AboutUsPage() {
   return (
     <main className="bg-secondary flex flex-col">
@@ -47,6 +49,15 @@ export default async function AboutUsPage() {
   )
 }
 
+const description =
+  'Family-owned hardscape company with over a decade of experience in stone work, custom masonry, and sustainable outdoor design across Oakland, Macomb, and Wayne.'
+
 export const metadata: Metadata = {
-  title: 'Gemini - About Us',
+  title: 'About Us',
+  description,
+  openGraph: mergeOpenGraph({
+    title: 'About Gemini Hardscape',
+    description,
+    url: '/about-us',
+  }),
 }

@@ -9,6 +9,7 @@ import Pagination from './_components/Pagination'
 import Title from '@/components/Title'
 import Subtitle from '@/components/Subtitle'
 import { PROJECTS_PER_PAGE } from './_components/constants'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 type Args = {
   searchParams: Promise<{ page?: string }>
@@ -55,6 +56,15 @@ export default async function ProjectsPage({ searchParams }: Args) {
   )
 }
 
+const description =
+  'Browse our portfolio of custom patios, retaining walls, and outdoor living projects completed across Oakland, Macomb, and Wayne County.'
+
 export const metadata: Metadata = {
-  title: 'Gemini - Projects',
+  title: 'Our Projects',
+  description,
+  openGraph: mergeOpenGraph({
+    title: 'Gemini Hardscape Projects',
+    description,
+    url: '/projects',
+  }),
 }

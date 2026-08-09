@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import HomeHeroSlider from '@/heros/HomeHeroSlider'
 import Services from './_components/Services'
 import Testimonials from './_components/Testimonials'
@@ -27,6 +28,15 @@ export default async function HomePage() {
   )
 }
 
+const description =
+  'Gemini Hardscape designs and builds custom patios, retaining walls, fire features, and outdoor living spaces across Oakland, Macomb, and Wayne. Free estimates on new installs and repairs.'
+
 export const metadata: Metadata = {
-  title: 'Gemini - Home',
+  title: 'Patio & Outdoor Living Design — Oakland, Macomb, Wayne',
+  description,
+  openGraph: mergeOpenGraph({
+    title: 'Gemini Hardscape',
+    description,
+    url: '/',
+  }),
 }

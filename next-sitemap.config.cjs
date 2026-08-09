@@ -7,14 +7,27 @@ const SITE_URL =
 module.exports = {
   siteUrl: SITE_URL,
   generateRobotsTxt: true,
-  exclude: ['/projects-sitemap.xml', '/*', '/projects/*'],
+  // Static pages (/, /about-us, /contact) are picked up automatically.
+  // /projects is dynamic (reads pagination searchParams) so the crawler
+  // skips it — added explicitly below. Dynamic `[slug]` routes can't be
+  // enumerated here, so they're excluded and served instead by the custom
+  // sitemap routes below, which pull real slugs from Payload.
+  exclude: [
+    '/projects-sitemap.xml',
+    '/categories-sitemap.xml',
+    '/admin/*',
+    '/api/*',
+    '/next/*',
+    '/projects/*',
+  ],
+  additionalPaths: async () => [{ loc: '/projects', changefreq: 'daily', priority: 0.7 }],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
-        disallow: '/admin/*',
+        disallow: ['/admin/*', '/api/*'],
       },
     ],
-    additionalSitemaps: [`${SITE_URL}/projects-sitemap.xml`],
+    additionalSitemaps: [`${SITE_URL}/projects-sitemap.xml`, `${SITE_URL}/categories-sitemap.xml`],
   },
 }

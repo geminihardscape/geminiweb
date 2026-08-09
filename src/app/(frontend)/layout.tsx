@@ -46,9 +46,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
+  title: {
+    default: 'Gemini Hardscape',
+    template: '%s | Gemini Hardscape',
+  },
+  description:
+    'Custom patios, retaining walls, and outdoor living spaces built by Gemini Hardscape — serving Oakland, Macomb, and Wayne. Free estimates on new installs and repairs.',
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
-    creator: '@payloadcms',
   },
 }

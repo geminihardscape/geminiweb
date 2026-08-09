@@ -3,19 +3,22 @@ import type { Metadata } from 'next'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
+import { cache } from 'react'
 
 import EmptyState from '@/components/EmptyState'
 import Hero from '@/heros/Hero'
 import ProjectCard from '../../_components/ProjectCard'
 import Pagination from '../../_components/Pagination'
 import { PROJECTS_PER_PAGE } from '../../_components/constants'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 type Args = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ page?: string }>
 }
 
-const queryCategoryBySlug = async (slug: string) => {
+// Deduped per-request: both the page and generateMetadata call this.
+const queryCategoryBySlug = cache(async (slug: string) => {
   const payload = await getPayload({ config: configPromise })
 
   const categories = await payload.find({
@@ -25,7 +28,7 @@ const queryCategoryBySlug = async (slug: string) => {
   })
 
   return categories.docs[0] ?? null
-}
+})
 
 export default async function ProjectsByCategoryPage({ params, searchParams }: Args) {
   const { slug } = await params
@@ -89,7 +92,20 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug } = await params
   const category = await queryCategoryBySlug(slug)
 
+  if (!category) {
+    return { title: 'Projects' }
+  }
+
+  const title = `${category.title} Projects`
+  const description = `Explore our ${category.title} hardscape projects across Oakland, Macomb, and Wayne.`
+
   return {
-    title: category ? `${category.title} Projects` : 'Projects',
+    title,
+    description,
+    openGraph: mergeOpenGraph({
+      title,
+      description,
+      url: `/projects/category/${slug}`,
+    }),
   }
 }

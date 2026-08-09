@@ -12,6 +12,8 @@ import Title from '@/components/Title'
 import Subtitle from '@/components/Subtitle'
 import Meta from '../_components/Meta'
 import Gallery from '../_components/Gallery'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -125,7 +127,26 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug } = await params
   const project = await queryProjectBySlug(slug)
 
+  if (!project) {
+    return { title: 'Project' }
+  }
+
+  const title = project.meta?.title || project.title
+  const description =
+    project.meta?.description ||
+    `${project.title} — a Gemini Hardscape project${project.location ? ` in ${project.location}` : ''}${project.year ? ` (${project.year})` : ''}.`
+
+  const ogImage = project.meta?.image ?? project.heroImage
+  const ogImageUrl = typeof ogImage === 'object' && ogImage ? getMediaUrl(ogImage.url) : undefined
+
   return {
-    title: project ? `Gemini - ${project.title}` : 'Gemini - Project',
+    title,
+    description,
+    openGraph: mergeOpenGraph({
+      title,
+      description,
+      url: `/projects/${slug}`,
+      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+    }),
   }
 }
