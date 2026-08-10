@@ -20,7 +20,7 @@ const Contact = async () => {
         </h2>
         <hr className="h-0.5 w-24 bg-tertiary border-0" />
 
-        <div className="flex justify-between w-full">
+        <div className="flex w-full flex-col-reverse gap-8 sm:flex-row sm:justify-between sm:gap-0">
           <div className="flex flex-col gap-8 text-muted">
             <section className="flex flex-col gap-4">
               <p className="text-tertiary font-sm">Give us a Call</p>

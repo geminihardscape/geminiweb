@@ -1,8 +1,18 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
 const Logo = () => {
   return (
-    <div className="max-w-2xs">
-      <img src="/gemini-logo.png" />
-    </div>
+    <Link href="/" className="shrink-0">
+      <Image
+        src="/gemini-logo.png"
+        alt="Gemini Hardscape"
+        width={400}
+        height={120}
+        priority
+        className="h-10 w-auto md:h-12"
+      />
+    </Link>
   )
 }
 

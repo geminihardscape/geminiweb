@@ -1,30 +1,18 @@
-import NavLink, { NavLinkType } from './NavLink'
+import { cn } from '@/utilities/ui'
 
-const links: NavLinkType[] = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'About Us',
-    href: '/about-us',
-  },
-  {
-    label: 'Projects',
-    href: '/projects',
-  },
-  {
-    label: 'Contact',
-    href: '/contact',
-  },
-]
+import NavLink from './NavLink'
+import { links } from './links'
 
-const Nav = () => {
+type NavProps = {
+  className?: string
+}
+
+const Nav = ({ className }: NavProps) => {
   return (
-    <ul className="flex gap-5 uppercase">
-      {links.map((link: NavLinkType) => {
-        return <NavLink key={link.href} {...link} />
-      })}
+    <ul className={cn('flex gap-5 uppercase', className)}>
+      {links.map((link) => (
+        <NavLink key={link.href} {...link} />
+      ))}
     </ul>
   )
 }

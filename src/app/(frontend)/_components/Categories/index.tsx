@@ -10,7 +10,7 @@ type CategoriesProps = {
 const Categories = ({ categories }: CategoriesProps) => {
   return (
     <div className="bg-primary text-white flex flex-col items-center justify-center py-18">
-      <div className="container grid grid-cols-4 mb-4">
+      <div className="container mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {categories.map((category) => {
           const image = category.image as Media
           const imageUrl = typeof image === 'object' ? (image.url ?? undefined) : undefined

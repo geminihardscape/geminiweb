@@ -25,6 +25,9 @@ const nextConfig: NextConfig = {
       {
         pathname: '/*.webp',
       },
+      {
+        pathname: '/*.png',
+      },
     ],
     qualities: [100],
     remotePatterns: [

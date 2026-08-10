@@ -33,8 +33,14 @@ const HomeHeroSlider = ({ slides }: HomeHeroSliderProps) => {
   return (
     <div className="relative flex flex-col">
       <Hero image={imageUrl}>
-        <h1 className="font-medium text-8xl uppercase">{activeSlide.title}</h1>
-        {activeSlide.subtitle && <h2 className="text-3xl font-normal">{activeSlide.subtitle}</h2>}
+        <h1 className="text-4xl font-medium uppercase sm:text-5xl md:text-7xl lg:text-8xl">
+          {activeSlide.title}
+        </h1>
+        {activeSlide.subtitle && (
+          <h2 className="text-lg font-normal sm:text-xl md:text-2xl lg:text-3xl">
+            {activeSlide.subtitle}
+          </h2>
+        )}
       </Hero>
 
       {slides.length > 1 && (

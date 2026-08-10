@@ -44,7 +44,7 @@ const Lightbox = ({ images, transitionName, index, onClose, onPrevious, onNext }
           onClose()
         }}
         aria-label="Cerrar"
-        className="border-tertiary/40 hover:bg-tertiary absolute top-4 right-4 flex h-10 w-10 items-center justify-center border bg-black/50 text-white transition-colors"
+        className="border-tertiary/40 hover:bg-tertiary absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center border bg-black/50 text-white transition-colors"
       >
         <X className="h-5 w-5" />
       </button>
@@ -58,7 +58,7 @@ const Lightbox = ({ images, transitionName, index, onClose, onPrevious, onNext }
               onPrevious()
             }}
             aria-label="Imagen anterior"
-            className="border-tertiary/40 hover:bg-tertiary absolute top-1/2 left-4 flex h-10 w-10 -translate-y-1/2 items-center justify-center border bg-black/50 text-white transition-colors"
+            className="border-tertiary/40 hover:bg-tertiary absolute top-1/2 left-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border bg-black/50 text-white transition-colors"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -70,7 +70,7 @@ const Lightbox = ({ images, transitionName, index, onClose, onPrevious, onNext }
               onNext()
             }}
             aria-label="Siguiente imagen"
-            className="border-tertiary/40 hover:bg-tertiary absolute top-1/2 right-4 flex h-10 w-10 -translate-y-1/2 items-center justify-center border bg-black/50 text-white transition-colors"
+            className="border-tertiary/40 hover:bg-tertiary absolute top-1/2 right-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border bg-black/50 text-white transition-colors"
           >
             <ChevronRight className="h-6 w-6" />
           </button>

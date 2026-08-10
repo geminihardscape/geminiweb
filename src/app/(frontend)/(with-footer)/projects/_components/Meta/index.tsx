@@ -10,7 +10,7 @@ type MetaProps = {
 
 const Meta = ({ location, year, categories }: MetaProps) => {
   return (
-    <dl className="mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
+    <dl className="mt-6 flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-8 sm:gap-y-2">
       {location && <MetaItem label="Location" value={location} />}
       {year && <MetaItem label="Year" value={year} />}
       {categories.length > 0 && (

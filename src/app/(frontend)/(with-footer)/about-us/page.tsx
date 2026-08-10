@@ -9,9 +9,11 @@ export default async function AboutUsPage() {
   return (
     <main className="bg-secondary flex flex-col">
       <Hero image="/abouthero.webp">
-        <h1 className="text-3xl text-end">
+        <h1 className="text-end text-lg sm:text-xl md:text-2xl lg:text-3xl">
           We are commited to design a beatiful <br />
-          <span className="uppercase text-8xl">outdoor space</span>
+          <span className="text-4xl uppercase sm:text-5xl md:text-7xl lg:text-8xl">
+            outdoor space
+          </span>
         </h1>
       </Hero>
       <div className="bg-primary flex flex-col items-center">

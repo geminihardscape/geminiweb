@@ -54,7 +54,9 @@ export default async function ProjectsByCategoryPage({ params, searchParams }: A
   return (
     <main className="bg-primary text-white">
       <Hero image="/heroprojects.webp">
-        <h1 className="text-8xl uppercase">{category.title}</h1>
+        <h1 className="text-4xl uppercase sm:text-5xl md:text-7xl lg:text-8xl">
+          {category.title}
+        </h1>
       </Hero>
 
       <div className="container py-24">

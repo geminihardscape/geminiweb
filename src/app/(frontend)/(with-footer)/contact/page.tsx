@@ -20,7 +20,9 @@ export default async function ContactPage() {
         />
 
         <div className="container relative flex flex-1 flex-col items-end justify-center text-white">
-          <h1 className="uppercase text-8xl text-end">Contact</h1>
+          <h1 className="text-end text-4xl uppercase sm:text-5xl md:text-7xl lg:text-8xl">
+            Contact
+          </h1>
           <hr className="h-0.5 w-24 bg-accent border-0 mt-8" />
         </div>
       </div>

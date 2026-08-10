@@ -19,7 +19,7 @@ const Category = ({ image, title = 'Category', slug }: CategoryProps) => {
             alt={title}
             className="object-cover object-center grayscale transition-all duration-300 group-hover:scale-110 group-hover:grayscale-0"
             fill
-            sizes="(min-width: 1024px) 25vw, 50vw"
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             src={image}
           />
           <div
