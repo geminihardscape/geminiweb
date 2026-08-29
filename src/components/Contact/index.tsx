@@ -25,7 +25,7 @@ const Contact = async () => {
             <section className="flex flex-col gap-4">
               <p className="text-tertiary font-sm">Give us a Call</p>
               <a href="tel:+13134245023">+1 (313) 424-50-23</a>
-              <a href="mailto:info@geminihardscape.com">info@geminihardscape.com</a>
+              <a href="mailto:info@geminihardscape.us">info@geminihardscape.us</a>
             </section>
             <section className="flex flex-col gap-4">
               <p className="text-tertiary font-sm">Find us at the office:</p>
