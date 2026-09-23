@@ -4,13 +4,19 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { isMaintenanceMode } from '@/utilities/isMaintenanceMode'
 import HomeHeroSlider from '@/heros/HomeHeroSlider'
 import Services from './_components/Services'
 import Testimonials from './_components/Testimonials'
 import Contact from '@/components/Contact'
 import Categories from './_components/Categories'
+import Maintenance from '@/components/Maintenance'
 
 export default async function HomePage() {
+  if (isMaintenanceMode()) {
+    return <Maintenance />
+  }
+
   const payload = await getPayload({ config: configPromise })
   const home = await payload.findGlobal({ slug: 'home' })
   const services = await payload.find({ collection: 'services', sort: 'createdAt' })

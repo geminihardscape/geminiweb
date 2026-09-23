@@ -11,6 +11,7 @@ import { ViewTransitions } from 'next-view-transitions'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { isMaintenanceMode } from '@/utilities/isMaintenanceMode'
 import Header from '@/components/Header'
 
 const redHatDisplay = Red_Hat_Display({
@@ -31,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               preview: isEnabled,
             }}
           />
-          <Header />
+          {!isMaintenanceMode() && <Header />}
 
           {children}
         </body>
